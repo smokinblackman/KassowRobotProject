@@ -1,0 +1,61 @@
+# Configuration file
+
+# Camera settings
+camera:
+  resolution: [640, 480]  # Resolution of the camera
+  frame_rate: 30          # Frame rate of the camera
+  color_enabled: true     # Enable color stream
+  depth_enabled: true     # Enable depth stream
+  imu_enabled: true       # Enable IMU
+
+# Robot settings
+robot:
+  ip_address: 192.168.1.10  # IP address of the Kassow robot
+  port: 30002               # Port number for connecting to the robot
+  joint_names:              # Names of the robot joints
+    - joint_a1
+    - joint_a2
+    - joint_a3
+    - joint_a4
+    - joint_a5
+    - joint_a6
+    - joint_a7
+  joint_limits:             # Joint limits for safety
+    joint_a1: [-180, 180]
+    joint_a2: [-90, 90]
+    joint_a3: [-180, 180]
+    joint_a4: [-180, 180]
+    joint_a5: [-90, 90]
+    joint_a6: [-180, 180]
+    joint_a7: [-180, 180]
+  payload: 5.0              # Payload in kilograms
+  tool_center_point:        # Tool center point configuration
+    x: 0.0
+    y: 0.0
+    z: 0.1
+  base_frame: "base_link"   # Base frame for the robot
+  end_effector_frame: "tool0"  # End-effector frame for the robot
+
+# Network settings
+network:
+  timeout: 5.0              # Network timeout in seconds
+
+# Logging settings
+logging:
+  level: "INFO"             # Logging level (DEBUG, INFO, WARNING, ERROR, CRITICAL)
+  log_to_file: true         # Whether to log to a file
+  log_file_path: "logs/robot_log.txt"  # Path to the log file
+
+# Path planning settings
+path_planning:
+  algorithm: "RRT"          # Path planning algorithm (RRT, RRT*, PRM, etc.)
+  max_iterations: 1000      # Maximum iterations for the algorithm
+  goal_tolerance: 0.01      # Goal tolerance in meters
+
+# Safety settings
+safety:
+  collision_avoidance: true # Enable collision avoidance
+  emergency_stop: true      # Enable emergency stop
+
+# Example usage of the configuration values in your scripts
+# You can use a YAML library in your scripts to read these values
