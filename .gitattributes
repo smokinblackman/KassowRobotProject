@@ -1,0 +1,13 @@
+# Set default behavior, in case users don't have core.autocrlf set.
+* text=auto
+
+# Explicitly declare text files you want to always be normalized and converted
+# to native line endings on checkout.
+*.bash text eol=lf
+*.ps1 text eol=lf
+*.sh text eol=lf
+*.zsh text eol=lf
+*.py text eol=lf
+*.cmake text eol=lf
+*.xml text eol=lf
+*.launch text eol=lf
