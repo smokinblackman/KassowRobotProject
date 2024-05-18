@@ -1,22 +1,25 @@
 import os
 
-def read_folder_structure(base_path, output_file):
-    with open(output_file, 'w') as f:
-        for root, dirs, files in os.walk(base_path):
-            level = root.replace(base_path, '').count(os.sep)
-            indent = ' ' * 4 * (level)
-            f.write('{}{}/\n'.format(indent, os.path.basename(root)))
-            subindent = ' ' * 4 * (level + 1)
-            for file in files:
-                f.write('{}{}\n'.format(subindent, file))
-                file_path = os.path.join(root, file)
-                with open(file_path, 'r', encoding='utf-8', errors='ignore') as file_content:
-                    content = file_content.read()
-                    f.write('{}Content of {}:\n{}\n\n'.format(subindent, file, content))
+def print_directory_structure(root_dir, prefix=''):
+    """
+    Prints the directory structure of the given root directory.
+    
+    Args:
+        root_dir (str): The root directory to start printing the structure from.
+        prefix (str): The prefix for each directory/file, used for indentation.
+    """
+    contents = os.listdir(root_dir)
+    contents.sort()
+    for index, name in enumerate(contents):
+        path = os.path.join(root_dir, name)
+        connector = '└── ' if index == len(contents) - 1 else '├── '
+        print(f"{prefix}{connector}{name}")
+        if os.path.isdir(path):
+            new_prefix = '    ' if index == len(contents) - 1 else '│   '
+            print_directory_structure(path, prefix + new_prefix)
 
-# Define the base path for the project and the output file
-base_path = 'D:\\KassowRobotProject'
-output_file = 'D:\\folder_structure.txt'
+# Define the root directory of your ROS 2 workspace
+root_directory = os.path.expanduser('~/KassowRobotProject')
 
-# Read the folder structure and write to the output file
-read_folder_structure(base_path, output_file)
+# Print the directory structure
+print_directory_structure(root_directory)
